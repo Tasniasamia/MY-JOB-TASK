@@ -29,8 +29,9 @@ exports.createUser=async(req,res)=>{
         email:reqbody['email'],
         phone_number:reqbody['phone_number'],
         address:reqbody['address'],
-        image:reqbody['image']
-        
+        image:reqbody['image'],
+        status:"General"
+
     })
     const result=await user.save();
     return res.send({message:"I am done",data:result})
@@ -52,7 +53,19 @@ exports.updateUser=async(req,res)=>{
         findUser.phone_number = reqbody.phone_number || findUser.phone_number;
         findUser.address = reqbody.address || findUser.address;
         findUser.image = reqbody.image || findUser.image;
+        findUser.status=findUser.status; 
    let result= await findUser.save()
    return res.status(202).json({data:result})
 
+}
+
+exports.favouriteUsers=async(req,res)=>{
+    const reqbody=await req.body
+    const { id }=await req.params;
+    const findUser=await User.findOne({_id:id});
+    findUser.status="Favourite"; 
+
+        
+   let result= await findUser.save()
+   return res.status(202).json({data:result})
 }
