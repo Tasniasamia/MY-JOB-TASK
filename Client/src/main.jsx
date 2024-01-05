@@ -6,8 +6,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Contact from './Components/Home/Contact/Contact.jsx';
-import CreateContact from './Components/Home/CreatContact/CreateContact.jsx';
+import Contact from './Components/Pages/Contact/Contact.jsx';
+import CreateContact from './Components/Pages/CreatContact/CreateContact.jsx';
 import { QueryClient, QueryClientProvider} from '@tanstack/react-query'
 const router = createBrowserRouter([
   {

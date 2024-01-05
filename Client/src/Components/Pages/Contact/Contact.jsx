@@ -19,20 +19,20 @@ const Contact = () => {
     const contactList = data?.data || [];
 
     return (
-        <div>
+        <div className="lg:mx-0 mx-2">
             <div>
-                {isLoading ? ( 
+                {isLoading ? (
                     <div>Loading...</div>
                 ) : (
-                    contactList.length ? 
-                     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">  
-                        {                     
-                       contactList.map((item, index) => (
-                            <Card data={item} key={index} />
-                        ))}
-                     </div> : 
-                    <div>No data available</div>
-                    
+                    contactList.length ?
+                        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center ">
+                            {
+                                contactList.map((item, index) => (
+                                    <Card data={item} key={index} />
+                                ))}
+                        </div> :
+                        <div>No data available</div>
+
                 )}
             </div>
         </div>

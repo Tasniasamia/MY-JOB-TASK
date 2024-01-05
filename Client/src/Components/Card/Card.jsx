@@ -1,12 +1,12 @@
 const Card = ({ data }) => {
     return (
         <div>
-            <div className="card w-96 bg-base-100 shadow-xl m-2">
+            <div className="card  w-96 mt-6 bg-green-100 shadow-xl ">
                 <div className="relative">
                     <img src={data?.image} alt="Shoes" />
                     {
-                        data.status=="General"?<i className="fa-regular fa-heart absolute top-[10px] right-[10px] text-red-600"></i>
-                        : <i className="fa-solid fa-heart absolute top-[10px] right-[10px] text-red-600"></i>
+                        data.status=="General"?<i className="fa-regular fa-heart absolute top-[10px] right-[10px] "></i>
+                        : <i className="fa-solid fa-heart absolute top-[10px] right-[10px] "></i>
                     }
                    
                     {/* <i className="fa-solid fa-heart "></i> */}
@@ -22,8 +22,8 @@ const Card = ({ data }) => {
 
                     </ul>
                     <div className="card-actions justify-end mt-4">
-                        <div className="badge badge-outline">Update</div>
-                        <div className="badge badge-outline">Delete</div>
+                        <div className="badge badge-outline p-3">Update</div>
+                        <div className="badge badge-outline p-3">Delete</div>
                     </div>
                 </div>
             </div>
