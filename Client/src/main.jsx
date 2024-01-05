@@ -8,7 +8,7 @@ import {
 import "./index.css";
 import Contact from './Components/Home/Contact/Contact.jsx';
 import CreateContact from './Components/Home/CreatContact/CreateContact.jsx';
-
+import { QueryClient, QueryClientProvider} from '@tanstack/react-query'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,9 +25,12 @@ const router = createBrowserRouter([
     ]
   },
 ]);
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+     <QueryClientProvider client={queryClient}>
+     <RouterProvider router={router} />
+   </QueryClientProvider>
   </React.StrictMode>
 );
