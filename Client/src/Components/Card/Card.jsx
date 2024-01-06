@@ -175,10 +175,10 @@ const addToGeneral=async(id)=>{
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-            <Dialog.Panel className="bg-base-200 lg:w-[40%] w-[90%]">
+            <Dialog.Panel className="bg-base-200 lg:w-[40%] w-[90%] ">
             <div className="relative ">
             <div className="md:flex    ">
-                <div className=" w-full p-4 shadow-2xl bg-base-100 w-full  bg-green-100 lg:py-4 ">
+                <div className=" w-full p-4 shadow-2xl bg-base-100 w-full  bg-green-100 lg:py-4  rounded-box">
                     <h1 className='lg:text-4xl text-xl font-bold lg:py-5 py-2 uppercase'>Update Information</h1>
                     <form className=" w-full" onSubmit={handleSubmit(onSubmit)}>
                          <div className='text-start'>Name</div>
