@@ -28,7 +28,7 @@ const Contact = () => {
                         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center ">
                             {
                                 contactList.map((item, index) => (
-                                    <Card data={item} key={index} />
+                                    <Card data={item} refetch={refetch} key={index} />
                                 ))}
                         </div> :
                         <div>No data available</div>
