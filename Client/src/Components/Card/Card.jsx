@@ -35,7 +35,7 @@ const Card = ({ data , refetch}) => {
                 address:data.address,
                 image:data.image
               }
-              const postResponse = await axios.put(`https://server-b914t32ya-tasniasamia.vercel.app/user/${Id}`, postData);
+              const postResponse = await axios.put(`https://server-site-1gou4jrq1-tasniasamia.vercel.app/user/${Id}`, postData);
               console.log('Post response:', postResponse.data);
               if (postResponse.data) {
                                
@@ -80,7 +80,7 @@ const Card = ({ data , refetch}) => {
         <div>
             <div className="card  w-96 mt-6 bg-green-100 shadow-xl ">
                 <div className="relative">
-                    <img src={data?.image} alt="Shoes" />
+                    <img src={data?.image} alt="Shoes"style={{height:"250px",width:"100%"}} className='object-cover'  />
                     {
                         data.status=="General"?<i className="fa-regular fa-heart absolute top-[10px] right-[10px] "></i>
                         : <i className="fa-solid fa-heart absolute top-[10px] right-[10px] "></i>

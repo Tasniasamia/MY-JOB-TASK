@@ -7,7 +7,7 @@ const Contact = () => {
         queryKey: ['repoData'],
         queryFn: async () => {
             try {
-                const response = await axios.get("https://server-b914t32ya-tasniasamia.vercel.app/user");
+                const response = await axios.get("https://server-site-1gou4jrq1-tasniasamia.vercel.app/user");
                 return response.data; // Return the data from the API
             } catch (error) {
                 throw new Error(error); // Throw an error to be caught by the error handler

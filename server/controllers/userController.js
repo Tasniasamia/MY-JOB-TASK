@@ -69,3 +69,14 @@ exports.favouriteUsers=async(req,res)=>{
    let result= await findUser.save()
    return res.status(202).json({data:result})
 }
+
+exports.generalUsers=async(req,res)=>{
+    const reqbody=await req.body
+    const { id }=await req.params;
+    const findUser=await User.findOne({_id:id});
+    findUser.status="General"; 
+
+        
+   let result= await findUser.save()
+   return res.status(202).json({data:result})
+}
