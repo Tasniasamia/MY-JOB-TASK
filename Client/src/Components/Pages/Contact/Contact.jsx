@@ -19,8 +19,8 @@ const Contact = () => {
     const contactList = data?.data || [];
 
     return (
-        <div className="lg:mx-0 mx-2">
-            <div>
+        <div >
+            <div className="">
                 {isLoading ? (
                     <div>Loading...</div>
                 ) : (

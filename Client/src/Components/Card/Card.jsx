@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2'
@@ -11,24 +11,12 @@ const Card = ({ data , refetch}) => {
     const [success, setSuccess] = useState(null); // Define the success variable
     const[Id,setId]=useState("");
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-    
+    const [profilePreview, setProfilePre] = useState(
+      "https://i.ibb.co/5xJKVLp/image.png"
+    );    
     const onSubmit = async (data) => {
         console.log(data);
-        // const formData = new FormData();
-        // formData.append('image', data.image[0]); // Assuming 'image' is the field name
-
-        // try {
-        //     const response = await fetch('https://api.imgbb.com/1/upload?key=392c6501cc4955e873764521bd71a665', {
-        //         method: 'POST',
-        //         body: formData,
-        //     });
-
-        //     if (response.ok) {
-        //         const result = await response.json();
-        //         const imageUrl = result.data.url;
-        //         console.log('Image uploaded:', imageUrl);
-
-              const postData={
+        const postData={
                 name:data.name,
                 email:data.email,
                 phone_number:data.phone_number,
@@ -48,16 +36,7 @@ const Card = ({ data , refetch}) => {
               }
               refetch()   
               reset();             
-
-            
-        //     } else {
-        //         throw new Error('Image upload failed');
-        //     }
-        // } catch (error) {
-        //     console.error('Error uploading image:', error);
-
-        // }
-    };
+};
 
     function closeModal() {
         setIsOpen(false)
@@ -120,10 +99,15 @@ const addToGeneral=async(id)=>{
     });
 }
 }
-  
+// const fileRef=useRef(null);
+// const handlePreview = () => {
+//   const file = fileRef?.current?.files[0];
+//   const imgPreview = URL?.createObjectURL(file);
+//   setProfilePre(imgPreview);
+// };
     return (
-        <div>
-            <div className="card  w-96 mt-6 bg-green-100 shadow-xl ">
+        <div className='lg:mx-0 mx-6'>
+            <div className="card lg:w-96 w-80 mt-6 bg-green-100 shadow-xl ">
                 <div className="relative">
                     <img src={data?.image} alt="Shoes"style={{height:"250px",width:"100%"}} className='object-cover'  />
                     {
@@ -133,8 +117,8 @@ const addToGeneral=async(id)=>{
                    
                     {/* <i className="fa-solid fa-heart "></i> */}
                 </div>
-                <div className="card-body">
-                    <h2 className="card-title">
+                <div className="mt-4">
+                    <h2 className="card-title my-3">
                         {data.name}
                     </h2>
                     <ul className="list-style-none">

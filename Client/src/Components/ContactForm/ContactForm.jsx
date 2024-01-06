@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2'
 
@@ -10,7 +11,9 @@ const ContactForm = () => {
     const [success, setSuccess] = useState(null); // Define the success variable
 
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-
+    // const [profilePreview, setProfilePre] = useState(
+    //     "https://i.ibb.co/5xJKVLp/image.png"
+    //   ); 
     const onSubmit = async (data) => {
         console.log(data);
         const formData = new FormData();
@@ -61,25 +64,38 @@ const ContactForm = () => {
         }
     };
 
-    // Send data into server
-    // const { data, isLoading, isError, refetch } = useQuery({
-    //     queryKey: ['repoData'],
-    //     queryFn: async () => {
-    //         try {
-    //             const response = await axios.post("https://server-b914t32ya-tasniasamia.vercel.app/user");
-    //             return response.data; // Return the data from the API
-    //         } catch (error) {
-    //             throw new Error(error); // Throw an error to be caught by the error handler
-    //         }
-    //     }
-    // });
+    // const fileRef=useRef(null);
+    // const handlePreview = () => {
+    //   const file = fileRef?.current?.files[0];
+    //   const imgPreview = URL?.createObjectURL(file);
+    //   console.log(imgPreview);
+    //   setProfilePre(imgPreview);
+
+    // };
 
     return (
-        <div className=" lg:my-16">
+        <div className=" my-16 lg:mx-0 mx-4">
             <div className="md:flex  justify-center  ">
                 <div className=" w-full p-4 shadow-2xl bg-base-100 w-full lg:w-[40%] bg-green-100 lg:py-4 lg:m-2">
                     <h1 className='lg:text-4xl text-xl text-center font-bold lg:py-5 py-2'>Create New Contact</h1>
                     <form className=" w-full" onSubmit={handleSubmit(onSubmit)}>
+                  {/* <div className="h-28  w-28 mx-auto rounded-full borderPrimary overflow-hidden">
+                  <img src={profilePreview} className="h-full w-full" alt="" />
+                  <label
+                    htmlFor="ProfilePic"
+                    className=" bg-black w-full flex items-center justify-center relative bottom-9 py-1 cursor-pointer"
+                  >
+                    <i className="fa-solid fa-file-arrow-up"></i>
+                  </label>
+                  <input
+                  type="file"
+                  ref={fileRef}
+                  onChange={handlePreview}
+                  accept="image/*"
+                  id="ProfilePic"
+                  className="hidden"
+                />
+                  </div> */}
                         <input {...register("name", { required: 'Name is required' })} placeholder="Name" className='my-4 p-2 border border-2 w-full rounded-lg' />
                         {errors.name && <p className="text-red-500">{errors.name.message}</p>}
                         <input {...register("email", {
