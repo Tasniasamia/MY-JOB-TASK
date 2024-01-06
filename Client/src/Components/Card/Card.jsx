@@ -14,26 +14,26 @@ const Card = ({ data , refetch}) => {
     
     const onSubmit = async (data) => {
         console.log(data);
-        const formData = new FormData();
-        formData.append('image', data.image[0]); // Assuming 'image' is the field name
+        // const formData = new FormData();
+        // formData.append('image', data.image[0]); // Assuming 'image' is the field name
 
-        try {
-            const response = await fetch('https://api.imgbb.com/1/upload?key=392c6501cc4955e873764521bd71a665', {
-                method: 'POST',
-                body: formData,
-            });
+        // try {
+        //     const response = await fetch('https://api.imgbb.com/1/upload?key=392c6501cc4955e873764521bd71a665', {
+        //         method: 'POST',
+        //         body: formData,
+        //     });
 
-            if (response.ok) {
-                const result = await response.json();
-                const imageUrl = result.data.url;
-                console.log('Image uploaded:', imageUrl);
+        //     if (response.ok) {
+        //         const result = await response.json();
+        //         const imageUrl = result.data.url;
+        //         console.log('Image uploaded:', imageUrl);
 
               const postData={
                 name:data.name,
                 email:data.email,
                 phone_number:data.phone_number,
                 address:data.address,
-                image:imageUrl
+                image:data.image
               }
               const postResponse = await axios.put(`https://server-b914t32ya-tasniasamia.vercel.app/user/${Id}`, postData);
               console.log('Post response:', postResponse.data);
@@ -51,13 +51,13 @@ const Card = ({ data , refetch}) => {
               reset();             
 
             
-            } else {
-                throw new Error('Image upload failed');
-            }
-        } catch (error) {
-            console.error('Error uploading image:', error);
+        //     } else {
+        //         throw new Error('Image upload failed');
+        //     }
+        // } catch (error) {
+        //     console.error('Error uploading image:', error);
 
-        }
+        // }
     };
 
     function closeModal() {
@@ -132,12 +132,14 @@ const Card = ({ data , refetch}) => {
               >
             <Dialog.Panel className="bg-base-200 lg:w-[40%] w-[90%]">
             <div className="relative ">
-            <div className="md:flex  justify-center  ">
+            <div className="md:flex    ">
                 <div className=" w-full p-4 shadow-2xl bg-base-100 w-full  bg-green-100 lg:py-4 ">
-                    <h1 className='lg:text-4xl text-xl text-center font-bold lg:py-5 py-2 uppercase'>Update Information</h1>
+                    <h1 className='lg:text-4xl text-xl font-bold lg:py-5 py-2 uppercase'>Update Information</h1>
                     <form className=" w-full" onSubmit={handleSubmit(onSubmit)}>
+                         <div className='text-start'>Name</div>
                         <input {...register("name", { required: 'Name is required' })} placeholder="Name"defaultValue={data?.name} className='my-4 p-2 border border-2 w-full rounded-lg' />
                         {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+                        <div className='text-start'>Email</div>
                         <input {...register("email", {
                             required: 'Email is required', pattern: {
                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -145,6 +147,7 @@ const Card = ({ data , refetch}) => {
                             }
                         })} defaultValue={data?.email} placeholder="Email" className='my-4 p-2 border border-2 w-full rounded-lg' />
                         {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+                        <div className='text-start'>Phone number</div>
                         <input {...register("phone_number", {
                             required: 'Phone Number is required',
                             pattern: {
@@ -156,10 +159,12 @@ const Card = ({ data , refetch}) => {
                         defaultValue={data?.phone_number}
                         className='my-2 p-2 border border-2 w-full rounded-lg' />
                         {errors.phone_number && <p className="text-red-500">{errors.phone_number.message}</p>}
+                        <div className='text-start'>Address</div>
                         <input {...register("address", { required: 'Address is required' })} placeholder="Address"
                         defaultValue={data?.address} className='my-4 p-2 border border-2 w-full rounded-lg' />
                         {errors.address && <p className="text-red-500">{errors.address.message}</p>}
-                        <input type="file" accept="image/*"{...register('image')} className='my-4' />
+                        <div className='text-start'>Image URL</div>
+                        <input type="text"defaultValue={data?.image} accept="image/*"{...register('image')} placeholder='Image URL' className='my-4 p-2 border border-2 w-full rounded-lg' />
                         <button className='btn btn-success text-white mt-4 w-full' type="submit">
                             <span className='lg:mx-2'>U</span>
                             <span className='lg:mx-2'>P</span>
