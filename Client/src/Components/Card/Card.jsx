@@ -38,8 +38,7 @@ const Card = ({ data , refetch}) => {
               const postResponse = await axios.put(`https://server-site-ruddy.vercel.app/user/${Id}`, postData);
               console.log('Post response:', postResponse.data);
               if (postResponse.data) {
-                               
-                Swal.fire({
+                  Swal.fire({
                       position: "top-end",
                       icon: "success",
                       title: "Your Information has been Updated",
@@ -69,12 +68,58 @@ const Card = ({ data , refetch}) => {
         setId(id); // Sets the ID
       };
 
-    //   update All Info
-        
+const deleteUser=async(id)=>{
+  const deleteResponse=await axios.delete(`https://server-site-ruddy.vercel.app/user/${id}`)
+  if (deleteResponse.data) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        refetch() 
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    })
+  }
+}     
 
+const addToFavourite=async(id)=>{
+  const favouriteResponse=await axios.put(`https://server-site-ruddy.vercel.app/favourite/${id}`)
+  if (favouriteResponse.data) {
+    refetch() 
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Add to Favourite List",
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
 
+}
 
-   
+const addToGeneral=async(id)=>{
+  const generalResponse=await axios.put(`https://server-site-ruddy.vercel.app/general/${id}`)
+  if (generalResponse.data) {
+    refetch() 
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Added into General ",
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+}
   
     return (
         <div>
@@ -82,8 +127,8 @@ const Card = ({ data , refetch}) => {
                 <div className="relative">
                     <img src={data?.image} alt="Shoes"style={{height:"250px",width:"100%"}} className='object-cover'  />
                     {
-                        data.status=="General"?<i className="fa-regular fa-heart absolute top-[10px] right-[10px] "></i>
-                        : <i className="fa-solid fa-heart absolute top-[10px] right-[10px] "></i>
+                        data.status=="General"?<i className="fa-regular fa-heart absolute top-[10px] right-[10px] "onClick={()=>{addToFavourite(data?._id)}}></i>
+                        : <i className="fa-solid fa-heart absolute top-[10px] right-[10px]"onClick={()=>{addToGeneral(data?._id)}}></i>
                     }
                    
                     {/* <i className="fa-solid fa-heart "></i> */}
@@ -100,7 +145,7 @@ const Card = ({ data , refetch}) => {
                     </ul>
                     <div className="card-actions justify-end mt-4">
                     <div className="badge badge-outline p-3" onClick={()=>{openUpdateModal(data?._id)}}>Update</div>
-                    <div className="badge badge-outline p-3">Delete</div>
+                    <div className="badge badge-outline p-3"onClick={()=>{deleteUser(data?._id)}}>Delete</div>
                     </div>
                 </div>
             </div>

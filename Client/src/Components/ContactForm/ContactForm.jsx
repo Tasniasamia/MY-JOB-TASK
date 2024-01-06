@@ -77,7 +77,7 @@ const ContactForm = () => {
     return (
         <div className=" lg:my-16">
             <div className="md:flex  justify-center  ">
-                <div className=" w-full p-4 shadow-2xl bg-base-100 w-full lg:w-[60%] bg-green-100 lg:py-4 lg:m-2">
+                <div className=" w-full p-4 shadow-2xl bg-base-100 w-full lg:w-[40%] bg-green-100 lg:py-4 lg:m-2">
                     <h1 className='lg:text-4xl text-xl text-center font-bold lg:py-5 py-2'>Create New Contact</h1>
                     <form className=" w-full" onSubmit={handleSubmit(onSubmit)}>
                         <input {...register("name", { required: 'Name is required' })} placeholder="Name" className='my-4 p-2 border border-2 w-full rounded-lg' />
