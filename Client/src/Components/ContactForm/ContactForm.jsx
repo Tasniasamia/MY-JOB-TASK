@@ -35,7 +35,7 @@ const ContactForm = () => {
                 image:imageUrl
               }
               try {
-                const postResponse = await axios.post('https://server-site-1gou4jrq1-tasniasamia.vercel.app/user', postData);
+                const postResponse = await axios.post('https://server-site-ruddy.vercel.app/user', postData);
                 console.log('Post response:', postResponse.data);
                 if(postResponse.data){
                     Swal.fire({

@@ -35,7 +35,7 @@ const Card = ({ data , refetch}) => {
                 address:data.address,
                 image:data.image
               }
-              const postResponse = await axios.put(`https://server-site-1gou4jrq1-tasniasamia.vercel.app/user/${Id}`, postData);
+              const postResponse = await axios.put(`https://server-site-ruddy.vercel.app/user/${Id}`, postData);
               console.log('Post response:', postResponse.data);
               if (postResponse.data) {
                                
